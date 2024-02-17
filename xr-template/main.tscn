@@ -1,9 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cyfhw445f4w0v"]
+[gd_scene load_steps=5 format=3 uid="uid://cyfhw445f4w0v"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_37itx"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_3y8oj"]
-size = Vector3(0.1, 0.1, 0.1)
+[ext_resource type="PackedScene" uid="uid://d3erlk2vajf4k" path="res://assets/hands/tracked_hand_left.tscn" id="2_jjmhl"]
+[ext_resource type="PackedScene" uid="uid://v4wv8mgicjyc" path="res://assets/hands/tracked_hand_right.tscn" id="3_dkviv"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_spnjx"]
 
@@ -12,20 +11,11 @@ script = ExtResource("1_37itx")
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
 
-[node name="LeftController" type="XRController3D" parent="XROrigin3D"]
-tracker = &"left_hand"
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/LeftController"]
-mesh = SubResource("BoxMesh_3y8oj")
-
-[node name="RightController" type="XRController3D" parent="XROrigin3D"]
-tracker = &"right_hand"
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/RightController"]
-mesh = SubResource("BoxMesh_3y8oj")
-skeleton = NodePath("../../LeftController")
-
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+
+[node name="TrackedHandLeft" parent="XROrigin3D" instance=ExtResource("2_jjmhl")]
+
+[node name="TrackedHandRight" parent="XROrigin3D" instance=ExtResource("3_dkviv")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.12318)

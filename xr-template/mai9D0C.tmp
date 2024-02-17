@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyfhw445f4w0v"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_37itx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3y8oj"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_spnjx"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_37itx")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+
+[node name="LeftController" type="XRController3D" parent="XROrigin3D"]
+visible = false
+tracker = &"left_hand"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/LeftController"]
+mesh = SubResource("BoxMesh_3y8oj")
+
+[node name="RightController" type="XRController3D" parent="XROrigin3D"]
+visible = false
+tracker = &"right_hand"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/RightController"]
+mesh = SubResource("BoxMesh_3y8oj")
+skeleton = NodePath("../../LeftController")
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+
+[node name="OpenXRHand" type="OpenXRHand" parent="XROrigin3D"]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="XROrigin3D/OpenXRHand"]
+mesh = SubResource("BoxMesh_3y8oj")
+skeleton = NodePath("../../LeftController")
+
+[node name="OpenXRHand2" type="OpenXRHand" parent="XROrigin3D"]
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="XROrigin3D/OpenXRHand2"]
+mesh = SubResource("BoxMesh_3y8oj")
+skeleton = NodePath("../../LeftController")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.12318)
+mesh = SubResource("BoxMesh_spnjx")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.924573, 0.227053, -0.305961, 0, 0.803036, 0.595931, 0.381006, -0.550981, 0.742465, 0, 3.85782, 0)
